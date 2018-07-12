@@ -22,8 +22,11 @@ function getRandomVideoUrl() {
 }
 
 app.get('/', (req, res) => {
-  getRandomVideoUrl()
-  res.send(currentVideoUrl)
+  if (!currentDate || new Date() - currentDate >= MILLISECONDS_IN_DAY) {
+    currentDate = new Date();
+    getRandomVideoUrl();
+  }
+  res.redirect(currentVideoUrl);
 });
 
 app.listen(process.env.PORT, () => {
