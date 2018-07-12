@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const app = express();
 
-const MILLISECONDS_IN_DAY = 86400000;
+const MILLISECONDS_IN_HOUR = 3600000;
 
 let currentVideoUrl;
 let currentDate;
@@ -22,7 +22,7 @@ function getRandomVideoUrl() {
 }
 
 app.get('/', (req, res) => {
-  if (!currentDate || new Date() - currentDate >= MILLISECONDS_IN_DAY) {
+  if (!currentDate || new Date() - currentDate >= MILLISECONDS_IN_HOUR) {
     currentDate = new Date();
     getRandomVideoUrl();
   }
