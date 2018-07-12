@@ -26,7 +26,13 @@ app.get('/', (req, res) => {
     currentDate = new Date();
     getRandomVideoUrl();
   }
-  res.redirect(currentVideoUrl);
+
+  res.send(
+    `<p>Get ready...for an hour of power!!</p>
+    <script>
+      setTimeout(() => window.location.href = "${currentVideoUrl}", 3000);
+    </script>`
+  );
 });
 
 app.listen(process.env.PORT, () => {
